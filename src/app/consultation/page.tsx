@@ -1,23 +1,66 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AnimatedSection from "@/components/common/AnimatedSection";
 import SectionTitle from "@/components/common/SectionTitle";
 import { apartmentData } from "@/data/apartment";
 import { unitTypes } from "@/data/units";
+import { submitLead } from "@/lib/storage";
 
 export default function ConsultationPage() {
   const [activeTab, setActiveTab] = useState<"consultation" | "registration">("consultation");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("tab") === "registration") {
+      setActiveTab("registration");
+    }
+  }, []);
+
+  const handleConsultationSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    await submitLead({
+      type: "consultation",
+      name: data.get("name") as string,
+      phone: data.get("phone") as string,
+      email: data.get("email") as string,
+      unitType: data.get("unitType") as string,
+      preferredDate: data.get("preferredDate") as string,
+      message: data.get("message") as string,
+      timestamp: new Date().toISOString(),
+    });
+
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    form.reset();
+    setTimeout(() => setSubmitted(false), 5000);
+  };
+
+  const handleRegistrationSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    await submitLead({
+      type: "registration",
+      name: data.get("name") as string,
+      phone: data.get("phone") as string,
+      email: data.get("email") as string,
+      address: data.get("address") as string,
+      source: data.get("source") as string,
+      timestamp: new Date().toISOString(),
+    });
+
+    setSubmitted(true);
+    form.reset();
+    setTimeout(() => setSubmitted(false), 5000);
   };
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 pb-20 lg:pb-0">
       {/* Hero */}
       <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center bg-surface-dark">
         <div className="absolute inset-0 bg-gradient-to-b from-primary-dark to-primary" />
@@ -27,6 +70,9 @@ export default function ConsultationPage() {
             <h1 className="font-display text-4xl md:text-5xl font-bold text-text-primary">
               상담신청
             </h1>
+            <p className="text-text-secondary mt-4 text-sm">
+              {apartmentData.salesOfficePhone}
+            </p>
           </AnimatedSection>
         </div>
       </section>
@@ -59,15 +105,16 @@ export default function ConsultationPage() {
 
           {/* Success Message */}
           {submitted && (
-            <div className="mb-8 p-4 bg-green-500/10 border border-green-500/30 rounded text-green-400 text-center">
-              신청이 완료되었습니다. 빠른 시일 내에 연락드리겠습니다.
+            <div className="mb-8 p-6 bg-green-500/10 border border-green-500/30 rounded-lg text-center">
+              <p className="text-green-400 text-lg font-semibold mb-1">신청이 완료되었습니다!</p>
+              <p className="text-green-400/70 text-sm">빠른 시일 내에 연락드리겠습니다.</p>
             </div>
           )}
 
           {/* Consultation Form */}
           {activeTab === "consultation" && (
             <AnimatedSection>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleConsultationSubmit} className="space-y-6">
                 <SectionTitle
                   title="방문상담 예약"
                   titleEn="CONSULTATION"
@@ -88,7 +135,7 @@ export default function ConsultationPage() {
                   >
                     <option value="">선택해 주세요</option>
                     {unitTypes.map((t) => (
-                      <option key={t.id} value={t.id}>{t.name} ({t.exclusiveArea}㎡)</option>
+                      <option key={t.id} value={t.id}>{t.name} ({t.exclusiveArea}㎡ / {(t.exclusiveArea / 3.305785).toFixed(1)}평)</option>
                     ))}
                   </select>
                 </div>
@@ -125,7 +172,7 @@ export default function ConsultationPage() {
           {/* Registration Form */}
           {activeTab === "registration" && (
             <AnimatedSection>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleRegistrationSubmit} className="space-y-6">
                 <SectionTitle
                   title="관심고객 등록"
                   titleEn="REGISTRATION"
@@ -167,9 +214,12 @@ export default function ConsultationPage() {
           <AnimatedSection>
             <div className="mt-16 p-8 bg-surface-medium rounded-lg border border-white/5 text-center">
               <p className="text-accent text-sm tracking-widest mb-3">CONTACT</p>
-              <p className="text-text-primary text-3xl font-bold font-display mb-2">
+              <a
+                href={`tel:${apartmentData.salesOfficePhone.replace(/-/g, "")}`}
+                className="text-text-primary text-3xl font-bold font-display mb-2 block hover:text-accent transition-colors"
+              >
                 {apartmentData.salesOfficePhone}
-              </p>
+              </a>
               <p className="text-text-secondary text-sm">
                 {apartmentData.salesOfficeHours}
               </p>
