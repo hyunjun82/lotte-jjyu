@@ -31,16 +31,8 @@ export default function ComplexPage() {
   return (
     <div className="pt-20">
       {/* Hero Banner */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center bg-surface-dark overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: "url('/images/complex/building-overview.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center top",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent" />
+      <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center bg-surface-dark overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-dark to-primary" />
         <div className="relative z-10 text-center">
           <AnimatedSection>
             <p className="text-accent tracking-[0.3em] text-sm mb-4">COMPLEX OVERVIEW</p>

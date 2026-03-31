@@ -22,16 +22,8 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-dark via-primary to-primary-dark" />
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: "url('/images/complex/building-overview.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-primary/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-dark via-primary to-surface-dark" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-accent)/5%,_transparent_70%)]" />
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <AnimatedSection delay={0.2}>
@@ -135,16 +127,7 @@ export default function Home() {
 
       {/* Tagline Section */}
       <section className="py-32 bg-surface-dark relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: "url('/images/complex/building-overview.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-accent)/8%,_transparent_60%)]" />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <AnimatedSection>
             <p className="text-accent tracking-[0.3em] text-sm mb-6">
