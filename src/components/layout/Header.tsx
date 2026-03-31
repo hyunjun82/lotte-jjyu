@@ -41,14 +41,14 @@ export default function Header() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center">
+            <nav className="hidden xl:flex items-center gap-1">
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-2 xl:px-3 py-2 text-xs xl:text-sm whitespace-nowrap tracking-wide transition-colors duration-300 relative group ${
+                    className={`px-3 py-2 text-sm whitespace-nowrap tracking-wide transition-colors duration-300 relative group ${
                       isActive
                         ? "text-accent"
                         : "text-text-primary hover:text-accent"
@@ -69,12 +69,12 @@ export default function Header() {
             <div className="flex items-center gap-4">
               <Link
                 href="/consultation"
-                className="hidden lg:inline-flex px-5 py-2 bg-accent text-primary text-sm font-semibold rounded hover:bg-accent-light transition-colors"
+                className="hidden xl:inline-flex px-5 py-2 bg-accent text-primary text-sm font-semibold rounded hover:bg-accent-light transition-colors"
               >
                 상담신청
               </Link>
               <button
-                className="lg:hidden text-text-primary p-2"
+                className="xl:hidden text-text-primary p-2"
                 onClick={() => setMobileOpen(true)}
                 aria-label="메뉴 열기"
               >
