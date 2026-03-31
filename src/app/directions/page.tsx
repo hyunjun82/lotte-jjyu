@@ -7,24 +7,24 @@ const directions = [
     icon: "🚇",
     method: "지하철",
     steps: [
-      "3호선 ○○역 3번 출구 → 도보 5분",
-      "9호선 ○○역 2번 출구 → 도보 7분",
+      "7호선 학동역 3번 출구 → 도보 약 5분",
+      "수인분당선 강남구청역 → 도보 약 8분",
     ],
   },
   {
     icon: "🚗",
     method: "자가용",
     steps: [
-      "경부고속도로 서초 IC → 우회전 후 직진 500m",
-      "올림픽대로 → ○○ 출구 → 좌회전 후 300m",
+      "경부고속도로 → 강남 방면 → 논현동 사거리",
+      "강남대로 → 논현동 방면 직진",
     ],
   },
   {
     icon: "🚌",
     method: "버스",
     steps: [
-      "간선: 140, 402, 420번 → ○○ 정류장 하차",
-      "마을버스: 서초01 → ○○ 정류장 하차 후 도보 2분",
+      "간선: 140, 402, 420번 → 논현동 정류장 하차",
+      "지선: 4211번 → 논현동 사거리 하차 후 도보 3분",
     ],
   },
 ];
@@ -62,7 +62,8 @@ export default function DirectionsPage() {
               <div className="text-center text-text-secondary">
                 <p className="text-6xl mb-4">📍</p>
                 <p className="text-lg font-semibold text-text-primary mb-2">견본주택 위치</p>
-                <p className="text-sm">카카오맵이 여기에 표시됩니다</p>
+                <p className="text-sm">{apartmentData.location}</p>
+                <p className="text-xs mt-2 text-accent">카카오맵이 여기에 표시됩니다</p>
               </div>
             </div>
           </AnimatedSection>
@@ -72,7 +73,7 @@ export default function DirectionsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
               <div className="p-6 bg-surface-medium rounded-lg border border-white/5 text-center">
                 <p className="text-accent text-sm mb-2">주소</p>
-                <p className="text-text-primary font-semibold">{apartmentData.salesOfficeAddress}</p>
+                <p className="text-text-primary font-semibold text-sm">{apartmentData.salesOfficeAddress}</p>
               </div>
               <div className="p-6 bg-surface-medium rounded-lg border border-white/5 text-center">
                 <p className="text-accent text-sm mb-2">전화</p>

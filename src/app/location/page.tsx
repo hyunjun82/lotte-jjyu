@@ -11,7 +11,7 @@ export default function LocationPage() {
         <div
           className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: "url('/images/location/site-map.png')",
+            backgroundImage: "url('/images/complex/building-overview.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -32,9 +32,9 @@ export default function LocationPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <SectionTitle
-              title="최적의 입지"
+              title="강남의 중심, 논현동"
               titleEn="PREMIUM LOCATION"
-              subtitle="교통, 교육, 생활 인프라가 완벽한 프리미엄 입지"
+              subtitle="교통, 교육, 문화, 상업 인프라가 집중된 강남 핵심 입지"
               light
             />
           </AnimatedSection>
@@ -88,18 +88,18 @@ export default function LocationPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <SectionTitle
-              title="교통의 중심"
+              title="사통팔달 교통"
               titleEn="TRANSPORTATION"
-              subtitle="사통팔달 교통 인프라로 서울 어디든 빠르게"
+              subtitle="강남의 중심에서 서울 어디든 빠르게"
               light
             />
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: "🚇", title: "지하철", items: ["3호선 도보 3분", "9호선 도보 5분", "신분당선 인접"] },
-              { icon: "🚗", title: "도로", items: ["경부고속도로 5분", "올림픽대로 인접", "강남역 10분"] },
-              { icon: "🚌", title: "버스", items: ["마을버스 2개 노선", "간선버스 다수", "광역버스 이용 편리"] },
+              { icon: "🚇", title: "지하철", items: ["7호선 학동역 도보 5분", "수인분당선 강남구청역 도보 8분", "3호선·신분당선 환승 용이"] },
+              { icon: "🚗", title: "도로", items: ["경부고속도로 인접", "강남대로 도보 3분", "올림픽대로 접근 용이"] },
+              { icon: "🚌", title: "버스", items: ["간선/지선 버스 다수", "광역버스 이용 편리", "강남역·삼성역 10분대"] },
             ].map((t, i) => (
               <AnimatedSection key={t.title} delay={i * 0.1}>
                 <div className="text-center p-8 bg-surface-medium rounded-lg border border-white/5">

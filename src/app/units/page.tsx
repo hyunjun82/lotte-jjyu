@@ -4,6 +4,7 @@ import { useState } from "react";
 import AnimatedSection from "@/components/common/AnimatedSection";
 import SectionTitle from "@/components/common/SectionTitle";
 import { unitTypes } from "@/data/units";
+import { apartmentData } from "@/data/apartment";
 
 export default function UnitsPage() {
   const [selectedType, setSelectedType] = useState(unitTypes[0].id);
@@ -31,7 +32,7 @@ export default function UnitsPage() {
             <SectionTitle
               title="타입별 안내"
               titleEn="FLOOR PLAN"
-              subtitle="다양한 라이프스타일에 맞춘 최적의 공간 설계"
+              subtitle={`총 ${apartmentData.totalUnits}세대, 5개 타입으로 구성된 도시형 생활주택`}
               light
             />
           </AnimatedSection>
@@ -49,6 +50,7 @@ export default function UnitsPage() {
                 }`}
               >
                 {type.name}
+                <span className="ml-2 text-xs opacity-70">({type.unitCount}세대)</span>
               </button>
             ))}
           </div>
@@ -61,7 +63,7 @@ export default function UnitsPage() {
                 <div className="text-center text-text-secondary">
                   <p className="text-6xl mb-4">📐</p>
                   <p className="text-lg font-semibold text-text-primary mb-2">{unit.name} 평면도</p>
-                  <p className="text-sm">실제 평면도 이미지가 여기에 표시됩니다</p>
+                  <p className="text-sm">교육자료 업로드 후 실제 평면도가 표시됩니다</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -76,11 +78,9 @@ export default function UnitsPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <InfoCard label="전용면적" value={`${unit.exclusiveArea}㎡`} />
-                  <InfoCard label="공용면적" value={`${unit.commonArea}㎡`} />
-                  <InfoCard label="공급면적" value={`${unit.supplyArea}㎡`} />
+                  <InfoCard label="평형" value={`${(unit.exclusiveArea / 3.305785).toFixed(1)}평`} />
                   <InfoCard label="세대수" value={`${unit.unitCount}세대`} />
-                  <InfoCard label="베이" value={unit.bay} />
-                  <InfoCard label="향" value={unit.direction} />
+                  <InfoCard label="건물유형" value="도시형 생활주택" />
                 </div>
 
                 {/* Features */}
@@ -109,27 +109,32 @@ export default function UnitsPage() {
                 <thead>
                   <tr className="border-b border-accent/30">
                     <th className="text-accent text-left py-3 px-4">타입</th>
-                    <th className="text-accent text-center py-3 px-4">전용면적</th>
-                    <th className="text-accent text-center py-3 px-4">공급면적</th>
+                    <th className="text-accent text-center py-3 px-4">전용면적 (㎡)</th>
+                    <th className="text-accent text-center py-3 px-4">전용면적 (평)</th>
                     <th className="text-accent text-center py-3 px-4">세대수</th>
-                    <th className="text-accent text-center py-3 px-4">베이/향</th>
                   </tr>
                 </thead>
                 <tbody>
                   {unitTypes.map((t) => (
                     <tr
                       key={t.id}
-                      className={`border-b border-white/5 ${
-                        t.id === selectedType ? "bg-accent/5" : ""
+                      className={`border-b border-white/5 cursor-pointer hover:bg-accent/5 transition-colors ${
+                        t.id === selectedType ? "bg-accent/10" : ""
                       }`}
+                      onClick={() => setSelectedType(t.id)}
                     >
                       <td className="text-text-primary py-3 px-4 font-semibold">{t.name}</td>
                       <td className="text-text-secondary text-center py-3 px-4">{t.exclusiveArea}㎡</td>
-                      <td className="text-text-secondary text-center py-3 px-4">{t.supplyArea}㎡</td>
+                      <td className="text-text-secondary text-center py-3 px-4">{(t.exclusiveArea / 3.305785).toFixed(1)}평</td>
                       <td className="text-text-secondary text-center py-3 px-4">{t.unitCount}세대</td>
-                      <td className="text-text-secondary text-center py-3 px-4">{t.bay} / {t.direction}</td>
                     </tr>
                   ))}
+                  <tr className="border-t border-accent/30 font-bold">
+                    <td className="text-accent py-3 px-4">합계</td>
+                    <td className="text-center py-3 px-4 text-text-secondary">-</td>
+                    <td className="text-center py-3 px-4 text-text-secondary">-</td>
+                    <td className="text-accent text-center py-3 px-4">130세대</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

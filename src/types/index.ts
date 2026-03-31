@@ -1,17 +1,27 @@
 export interface ApartmentData {
   name: string;
   nameEn: string;
+  projectName: string;
   developer: string;
   constructor: string;
   location: string;
   totalUnits: number;
   totalBuildings: number;
   maxFloors: number;
+  undergroundFloors: number;
+  parkingTotal: number;
   parkingRatio: number;
   expectedMoveIn: string;
   subscriptionDate: string;
   tagline: string;
   subTagline: string;
+  landArea: string;
+  totalFloorArea: string;
+  buildingArea: string;
+  floorAreaRatio: string;
+  buildingCoverageRatio: string;
+  buildingType: string;
+  additionalFacilities: string[];
   coordinates: { lat: number; lng: number };
   salesOfficeAddress: string;
   salesOfficePhone: string;

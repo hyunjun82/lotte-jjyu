@@ -5,16 +5,16 @@ import { apartmentData } from "@/data/apartment";
 
 const quickLinks = [
   { label: "분양안내", desc: "분양가 및 납부일정", href: "/sales-info", icon: "📋" },
-  { label: "세대안내", desc: "타입별 평면도", href: "/units", icon: "🏠" },
-  { label: "입지환경", desc: "주변 인프라", href: "/location", icon: "📍" },
+  { label: "세대안내", desc: "타입별 평면 안내", href: "/units", icon: "🏠" },
+  { label: "입지환경", desc: "강남 프리미엄 입지", href: "/location", icon: "📍" },
   { label: "상담신청", desc: "방문예약 및 상담", href: "/consultation", icon: "📞" },
 ];
 
 const stats = [
-  { value: `${apartmentData.totalUnits.toLocaleString()}세대`, label: "총 세대수" },
-  { value: `${apartmentData.totalBuildings}개동`, label: "총 동수" },
-  { value: `최고 ${apartmentData.maxFloors}층`, label: "층수" },
-  { value: `${apartmentData.parkingRatio}:1`, label: "주차비율" },
+  { value: "130세대", label: "총 세대수" },
+  { value: "지상 18층", label: "규모" },
+  { value: "183대", label: "주차대수" },
+  { value: "강남구", label: "위치" },
 ];
 
 export default function Home() {
@@ -22,19 +22,17 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary-dark via-primary to-primary-dark" />
         <div
           className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: "url('/images/hero/bird-eye-view.png')",
+            backgroundImage: "url('/images/complex/building-overview.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-primary/50" />
 
-        {/* Content */}
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <AnimatedSection delay={0.2}>
             <p className="text-accent text-sm md:text-base tracking-[0.4em] mb-6">
@@ -57,6 +55,12 @@ export default function Home() {
             </p>
           </AnimatedSection>
 
+          <AnimatedSection delay={0.7}>
+            <p className="text-text-secondary/60 text-sm mt-3">
+              {apartmentData.buildingType} · {apartmentData.location}
+            </p>
+          </AnimatedSection>
+
           <AnimatedSection delay={0.8}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
               <Button href="/consultation" size="lg">
@@ -68,7 +72,6 @@ export default function Home() {
             </div>
           </AnimatedSection>
 
-          {/* Scroll Indicator */}
           <AnimatedSection delay={1.2}>
             <div className="mt-16 flex flex-col items-center text-text-secondary text-xs tracking-widest">
               <span>SCROLL</span>
@@ -136,10 +139,9 @@ export default function Home() {
           <div
             className="w-full h-full"
             style={{
-              backgroundImage: "url('/images/hero/bird-eye-view.png')",
+              backgroundImage: "url('/images/complex/building-overview.png')",
               backgroundSize: "cover",
               backgroundPosition: "center",
-              backgroundAttachment: "fixed",
             }}
           />
         </div>
@@ -152,8 +154,8 @@ export default function Home() {
               {apartmentData.subTagline}
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed max-w-2xl mx-auto">
-              프리미엄 주거 문화를 선도하는 {apartmentData.developer}의 노하우와
-              최적의 입지가 만나 새로운 라이프스타일을 완성합니다.
+              강남구 논현동의 프리미엄 입지에 {apartmentData.developer}의 기술력이 만나
+              지하 7층 ~ 지상 18층의 고급 주상복합을 완성합니다.
             </p>
           </AnimatedSection>
         </div>
