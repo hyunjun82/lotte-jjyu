@@ -41,14 +41,14 @@ export default function Header() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center">
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-4 py-2 text-sm tracking-wide transition-colors duration-300 relative group ${
+                    className={`px-2 xl:px-3 py-2 text-xs xl:text-sm whitespace-nowrap tracking-wide transition-colors duration-300 relative group ${
                       isActive
                         ? "text-accent"
                         : "text-text-primary hover:text-accent"
