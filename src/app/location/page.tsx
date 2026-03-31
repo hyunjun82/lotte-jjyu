@@ -1,0 +1,121 @@
+import AnimatedSection from "@/components/common/AnimatedSection";
+import SectionTitle from "@/components/common/SectionTitle";
+import { infrastructureData } from "@/data/location";
+import { apartmentData } from "@/data/apartment";
+
+export default function LocationPage() {
+  return (
+    <div className="pt-20">
+      {/* Hero */}
+      <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center bg-surface-dark">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: "url('/images/location/site-map.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent" />
+        <div className="relative z-10 text-center">
+          <AnimatedSection>
+            <p className="text-accent tracking-[0.3em] text-sm mb-4">LOCATION</p>
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-text-primary">
+              입지환경
+            </h1>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Location Overview */}
+      <section className="py-24 bg-primary">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <AnimatedSection>
+            <SectionTitle
+              title="최적의 입지"
+              titleEn="PREMIUM LOCATION"
+              subtitle="교통, 교육, 생활 인프라가 완벽한 프리미엄 입지"
+              light
+            />
+          </AnimatedSection>
+
+          {/* Map Placeholder */}
+          <AnimatedSection>
+            <div className="bg-surface-medium rounded-lg border border-white/5 h-[400px] flex items-center justify-center mb-16">
+              <div className="text-center text-text-secondary">
+                <p className="text-6xl mb-4">🗺️</p>
+                <p className="text-lg font-semibold text-text-primary mb-2">위치 안내</p>
+                <p className="text-sm">{apartmentData.location}</p>
+                <p className="text-xs mt-2 text-accent">카카오맵이 여기에 표시됩니다</p>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Infrastructure */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {infrastructureData.map((category, i) => (
+              <AnimatedSection key={category.category} delay={i * 0.1}>
+                <div className="bg-surface-medium rounded-lg border border-white/5 p-6 h-full">
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="text-3xl">{category.categoryIcon}</span>
+                    <h3 className="text-text-primary text-lg font-semibold">
+                      {category.category}
+                    </h3>
+                  </div>
+                  <div className="space-y-3">
+                    {category.items.map((item) => (
+                      <div
+                        key={item.name}
+                        className="flex items-center justify-between py-2 border-b border-white/5 last:border-0"
+                      >
+                        <span className="text-text-primary text-sm">{item.name}</span>
+                        <div className="flex items-center gap-3">
+                          <span className="text-accent text-xs">{item.distance}</span>
+                          <span className="text-text-secondary text-xs">{item.time}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Transportation Highlight */}
+      <section className="py-24 bg-surface-dark">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <AnimatedSection>
+            <SectionTitle
+              title="교통의 중심"
+              titleEn="TRANSPORTATION"
+              subtitle="사통팔달 교통 인프라로 서울 어디든 빠르게"
+              light
+            />
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { icon: "🚇", title: "지하철", items: ["3호선 도보 3분", "9호선 도보 5분", "신분당선 인접"] },
+              { icon: "🚗", title: "도로", items: ["경부고속도로 5분", "올림픽대로 인접", "강남역 10분"] },
+              { icon: "🚌", title: "버스", items: ["마을버스 2개 노선", "간선버스 다수", "광역버스 이용 편리"] },
+            ].map((t, i) => (
+              <AnimatedSection key={t.title} delay={i * 0.1}>
+                <div className="text-center p-8 bg-surface-medium rounded-lg border border-white/5">
+                  <span className="text-5xl mb-4 block">{t.icon}</span>
+                  <h3 className="text-text-primary text-xl font-semibold mb-4">{t.title}</h3>
+                  <ul className="space-y-2">
+                    {t.items.map((item) => (
+                      <li key={item} className="text-text-secondary text-sm">{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
